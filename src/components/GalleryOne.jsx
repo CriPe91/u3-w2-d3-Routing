@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const GalleryOne = () => {
   // state = {
   //   movieBatman: [],
   // };
+  const navigate = useNavigate();
 
   const [movieBatman, setMovieBatman] = useState([]);
 
@@ -30,6 +32,11 @@ const GalleryOne = () => {
       });
   };
 
+  const handleSubmit = (id) => {
+    console.log("id trovato", id);
+    navigate(`/TvShows/MoviesDetails/${id}`);
+  };
+
   useEffect(() => {
     handleMovies();
   }, []);
@@ -39,7 +46,7 @@ const GalleryOne = () => {
       <h3 className="mb-4 mx-5 mt-4">Saga : Batman</h3>
       <Row xs={1} md={3} xl={6} className="mx-4">
         {movieBatman.map((movie) => (
-          <Col key={movie.imdbID}>
+          <Col key={movie.imdbID} className="mb-4 text-center px-1" onClick={() => handleSubmit(movie.imdbID)}>
             <Card className="border-0">
               <Card.Img variant="top" src={movie.Poster} />
             </Card>

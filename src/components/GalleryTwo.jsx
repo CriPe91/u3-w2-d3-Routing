@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const GalleryTwo = () => {
   // state = {
   //   movieMatrix: [],
   // };
+
+  const navigate = useNavigate();
 
   const [movieMatrix, setMovieMatrix] = useState([]);
 
@@ -30,6 +33,11 @@ const GalleryTwo = () => {
       });
   };
 
+  const handleSubmit = (id) => {
+    console.log("id trovato", id);
+    navigate(`/TvShows/MoviesDetails/${id}`);
+  };
+
   useEffect(() => {
     handleMovies();
   }, []);
@@ -39,7 +47,7 @@ const GalleryTwo = () => {
       <h3 className="mb-4 mx-5 mt-4">Saga : Matrix</h3>
       <Row xs={1} md={3} xl={6} className="mx-4">
         {movieMatrix.map((movie) => (
-          <Col key={movie.imdbID}>
+          <Col key={movie.imdbID} className="mb-4 text-center px-1" onClick={() => handleSubmit(movie.imdbID)}>
             <Card className="border-0">
               <Card.Img variant="top" src={movie.Poster} />
             </Card>
