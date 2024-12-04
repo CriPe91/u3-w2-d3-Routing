@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const Gallery = () => {
-  // state = {
-  //   moviePotter: [],
-  // };
-
+  const navigate = useNavigate();
   const [moviePotter, setMoviePotter] = useState([]);
 
   const handleMovies = () => {
@@ -17,17 +15,19 @@ const Gallery = () => {
           throw new Error("FILM NON TROVATI");
         }
       })
-
       .then((movie) => {
-        console.log(movie);
-
         if (movie.Search) {
           setMoviePotter(movie.Search.slice(0, 6));
         }
       })
       .catch((error) => {
-        "ERROR", console.log(error);
+        console.log("ERROR", error);
       });
+  };
+
+  const handleSubmit = (id) => {
+    console.log("id trovato", id);
+    navigate(`/TvShows/MoviesDetails/${id}`);
   };
 
   useEffect(() => {
@@ -39,7 +39,11 @@ const Gallery = () => {
       <h3 className="mb-4 mx-5 mt-5">Saga : Harry Potter</h3>
       <Row xs={1} md={3} xl={6} className="mx-4">
         {moviePotter.map((movie) => (
-          <Col key={movie.imdbID}>
+          <Col
+            key={movie.imdbID}
+            className="mb-4 text-center px-1"
+            onClick={() => handleSubmit(movie.imdbID)} // Solo la funzione handleSubmit
+          >
             <Card className="border-0">
               <Card.Img variant="top" src={movie.Poster} />
             </Card>

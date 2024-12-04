@@ -1,13 +1,9 @@
-import Gallery from "./Gallery";
-import GalleryOne from "./GalleryOne";
-import GalleryTwo from "./GalleryTwo";
+import Home from "./Home";
 
 const TvShows = () => {
   return (
     <>
-      <Gallery />
-      <GalleryOne />
-      <GalleryTwo />
+      <Home />
     </>
   );
 };

@@ -5,6 +5,7 @@ import UnderNav from "./components/UnderNav";
 import MyFooter from "./components/MyFooter";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import TvShows from "./components/TvShows";
+
 import MoviesDetails from "./components/MoviesDetails";
 
 function App() {
@@ -15,13 +16,10 @@ function App() {
         <UnderNav />
         <Routes>
           <Route path="/TvShows" element={<TvShows />} />
-          <Route path="/TvShows/MoviesDetails/:movie.imbdID" element={<MoviesDetails />} />
+          <Route path="/TvShows/MoviesDetails/:id" element={<MoviesDetails />} />
         </Routes>
       </BrowserRouter>
 
-      {/* <Gallery />
-      <GalleryOne />
-      <GalleryTwo /> */}
       <MyFooter />
     </>
   );
